@@ -1,0 +1,5 @@
+{
+  "name": "Robo AI - Toolshed",
+  "description": "A futuristic landing page showcasing a curated list of AI tools. Includes a private admin panel to manage the tool directory, with all data persisted locally in your browser.",
+  "requestFramePermissions": []
+}
