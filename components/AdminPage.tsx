@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useCallback } from 'react';
 import type { Tool } from '../types';
 import Input from './ui/Input';
@@ -402,6 +403,12 @@ const AdminPage: React.FC<AdminPageProps> = ({ tools, onAddTool, onAddMultipleTo
         title="Admin Panel Guide"
       >
         <div className="space-y-6">
+          <div>
+            <h3 className="font-bold text-lg text-white mb-2">🏠 Return to Homepage</h3>
+            <p>
+              To go back to the public tool listing, click the <strong className="text-cyan-400">HOME</strong> link or the <strong className="text-cyan-400">Robo AI - Toolshed</strong> logo in the header.
+            </p>
+          </div>
           <div>
             <h3 className="font-bold text-lg text-white mb-2">📝 Add a New Tool</h3>
             <p>

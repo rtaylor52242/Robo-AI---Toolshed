@@ -129,6 +129,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ tools }) => {
             Welcome to the Robo AI Toolshed! This is your curated directory for the latest and greatest AI tools. Here's how to get around:
           </p>
           <div>
+            <h3 className="font-bold text-lg text-white mb-2">⚙️ Admin Panel</h3>
+            <p>
+              Want to add or manage tools? Click the <strong className="text-cyan-400">ADMIN</strong> link in the top-right corner of the header to go to the control panel.
+            </p>
+          </div>
+          <div>
             <h3 className="font-bold text-lg text-white mb-2">🔍 Searching for Tools</h3>
             <p>
               Use the search bar at the top to find tools by their <strong className="text-cyan-400">name</strong>, <strong className="text-cyan-400">description</strong>, or <strong className="text-cyan-400">category</strong>. Just start typing, and the list will update automatically.
