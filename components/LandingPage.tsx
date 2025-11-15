@@ -3,6 +3,8 @@ import React, { useState, useMemo } from 'react';
 import type { Tool } from '../types';
 import ToolCard from './ToolCard';
 import Input from './ui/Input';
+import HelpButton from './HelpButton';
+import HelpModal from './HelpModal';
 
 interface LandingPageProps {
   tools: Tool[];
@@ -11,6 +13,7 @@ interface LandingPageProps {
 const LandingPage: React.FC<LandingPageProps> = ({ tools }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   const categories = useMemo(() => {
     const allCategories = new Set<string>();
@@ -114,6 +117,38 @@ const LandingPage: React.FC<LandingPageProps> = ({ tools }) => {
           <p className="text-gray-400 mt-2">Visit the admin page to add the first one!</p>
         </div>
       )}
+
+      <HelpButton onClick={() => setIsHelpModalOpen(true)} />
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+        title="How to Use the Toolshed"
+      >
+        <div className="space-y-4">
+          <p>
+            Welcome to the Robo AI Toolshed! This is your curated directory for the latest and greatest AI tools. Here's how to get around:
+          </p>
+          <div>
+            <h3 className="font-bold text-lg text-white mb-2">🔍 Searching for Tools</h3>
+            <p>
+              Use the search bar at the top to find tools by their <strong className="text-cyan-400">name</strong>, <strong className="text-cyan-400">description</strong>, or <strong className="text-cyan-400">category</strong>. Just start typing, and the list will update automatically.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-bold text-lg text-white mb-2">🏷️ Filtering by Category</h3>
+            <p>
+              Click on the category buttons below the search bar to see tools from a specific category. Click "All" to see every tool again.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-bold text-lg text-white mb-2">🃏 Understanding the Tool Cards</h3>
+            <ul className="list-disc list-inside space-y-2 pl-2">
+              <li><strong className="text-cyan-400">Visit Tool:</strong> Click this link to open the tool's official website in a new tab.</li>
+              <li><strong className="text-cyan-400">Share Button:</strong> Click the share icon to copy the tool's URL to your clipboard, making it easy to share with others.</li>
+            </ul>
+          </div>
+        </div>
+      </HelpModal>
     </div>
   );
 };

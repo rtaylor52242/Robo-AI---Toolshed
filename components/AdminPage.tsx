@@ -3,6 +3,8 @@ import type { Tool } from '../types';
 import Input from './ui/Input';
 import Textarea from './ui/Textarea';
 import Button from './ui/Button';
+import HelpButton from './HelpButton';
+import HelpModal from './HelpModal';
 
 // SheetJS/xlsx is loaded from a CDN script in index.html
 declare var XLSX: any;
@@ -34,6 +36,9 @@ const AdminPage: React.FC<AdminPageProps> = ({ tools, onAddTool, onAddMultipleTo
   
   // State for search
   const [searchTerm, setSearchTerm] = useState('');
+
+  // State for help modal
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -390,6 +395,53 @@ const AdminPage: React.FC<AdminPageProps> = ({ tools, onAddTool, onAddMultipleTo
             </div>
         </div>
       </div>
+      <HelpButton onClick={() => setIsHelpModalOpen(true)} />
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+        title="Admin Panel Guide"
+      >
+        <div className="space-y-6">
+          <div>
+            <h3 className="font-bold text-lg text-white mb-2">📝 Add a New Tool</h3>
+            <p>
+              Use the form on the left to add a single tool to the directory. All fields are required except for "Category".
+            </p>
+          </div>
+          <div>
+            <h3 className="font-bold text-lg text-white mb-2">📤 Import from Excel</h3>
+            <p>
+              You can add multiple tools at once by uploading an Excel file (<code className="bg-gray-900 text-cyan-400 px-1 rounded-sm">.xlsx</code>, <code className="bg-gray-900 text-cyan-400 px-1 rounded-sm">.xls</code>, <code className="bg-gray-900 text-cyan-400 px-1 rounded-sm">.csv</code>).
+            </p>
+            <p className="mt-2">
+              Your spreadsheet must have columns with the following headers:
+            </p>
+            <ul className="list-disc list-inside space-y-1 pl-2 mt-2">
+              <li><code className="bg-gray-900 text-cyan-400 px-1 rounded-sm">Name</code> (Required)</li>
+              <li><code className="bg-gray-900 text-cyan-400 px-1 rounded-sm">URL</code> (Required)</li>
+              <li><code className="bg-gray-900 text-cyan-400 px-1 rounded-sm">Description</code> (Required)</li>
+              <li><code className="bg-gray-900 text-cyan-400 px-1 rounded-sm">Category</code> (Optional)</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold text-lg text-white mb-2">🗂️ Manage Existing Tools</h3>
+            <p>
+              The list on the right shows all current tools. You can:
+            </p>
+            <ul className="list-disc list-inside space-y-2 pl-2 mt-2">
+              <li><strong className="text-cyan-400">Search:</strong> Use the search bar to quickly find a tool in the list.</li>
+              <li><strong className="text-cyan-400">Edit:</strong> Click the pencil icon to edit a tool's details inline.</li>
+              <li><strong className="text-cyan-400">Delete:</strong> Click the trash can icon to permanently remove a tool. You will be asked to confirm this action.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold text-lg text-white mb-2">📥 Export to Excel</h3>
+            <p>
+              Click the "Export to Excel" button to download a spreadsheet of the entire tool collection. This is useful for backups or sharing the data.
+            </p>
+          </div>
+        </div>
+      </HelpModal>
     </div>
   );
 };
